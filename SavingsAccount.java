@@ -1,7 +1,10 @@
-// The SavingsAccount class should contain:
 public class SavingsAccount extends Account {
-  // • A double data field named annualInterestRate that stores the current annual interest rate.
-  private double annualInterestRate;
+  public double annualInterestRate;
+
+  public SavingsAccount(int id, double balance, double annualInterestRate) {
+    super(id, balance);
+    annualInterestRate = annualInterestRate;
+  }
 
   public void setAnnualInterestRate(double newAnnualInterestRate) {
     annualInterestRate = newAnnualInterestRate;
@@ -15,8 +18,11 @@ public class SavingsAccount extends Account {
     return annualInterestRate / 12;
   }
 
-  public getMonthlyInterest() {
-    return balance * ( monthlyInterestRate / 100)
+  public double getMonthlyInterest() {
+    return balance * ( monthlyInterestRate / 100);
   }
 
+  public double getTotalBalanceSavings() {
+    return balance + getMonthlyInterest();
+  }
 }

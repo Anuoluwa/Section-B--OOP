@@ -1,12 +1,20 @@
-public class Account {
-  private int id;
-  private double balance;
-  private Date dateCreated;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-  public Account(int accountId, double totalBalance, Date transactionDate ) {
+public class Account {
+
+  LocalDateTime myDateObj = LocalDateTime.now();
+  DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+  String formattedDate = myDateObj.format(myFormatObj);
+
+  public int id;
+  public double balance;
+  private String dateCreated;
+
+  public Account(int accountId, double totalBalance) {
     id = accountId;
     balance = totalBalance;
-    dateCreated = transactionDate;
+    dateCreated = formattedDate;
   }
 
   public int getAccountId() {
@@ -17,16 +25,16 @@ public class Account {
     return balance;
   }
 
-  public Date getTransactionDate() {
+  public String getTransactionDate() {
     return dateCreated;
   }
 
   public void setAccountId(int id) {
-    return id = newId;
+    id = newId;
   }
 
   public void setTotalBalance(double balance) {
-    return balance = newBalance;
+    balance = newBalance;
   }
 
   public void withdraw(double amount) {
