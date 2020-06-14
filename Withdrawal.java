@@ -1,11 +1,13 @@
-public class Withdraw extends Transaction {
+package com.cogrammar.transaction;
+
+public class Withdrawal extends Transaction {
   private int amount;
   private Keypad keypad;
-  private CashDispenser;
+  private CashDispenser cashDispenser;
 
   private final static int CANCELED = 6;
 
-  public Withdraw( int userAccountId, Screen atmScreen, BankDatabase atmBankDatabase, Keypad atmKeypad, CashDispenser atmCashDispenser) {
+  public Withdrawal( int userAccountId, Screen atmScreen, BankDatabase atmBankDatabase, Keypad atmKeypad, CashDispenser atmCashDispenser) {
     super(userAccountId, atmScreen, atmBankDatabase);
     keypad = atmKeypad;
     cashDispenser = atmCashDispenser;
@@ -22,14 +24,14 @@ public class Withdraw extends Transaction {
     do {
       amount = displayMenuOfAmounts();
 
-      if(amount != CANCELD) {
+      if(amount != CANCELED) {
         totalBalance = bankDatabase.getTotalBalance( getAccountId() );
 
         if(amount <= totalBalance) {
           if(cashDispenser.isSufficientCashAvailable( amount )) {
             bankDatabase.withdraw( getAccountId(), amount );
 
-            cashDispenser.dispenserCash( amount );
+            cashDispenser.dispenseCash( amount );
             cashDispensed = true;
 
             screen.displayMessageLine("\nCash dispensed, kindly take your cash.");
@@ -38,20 +40,20 @@ public class Withdraw extends Transaction {
             screen.displayMessageLine("Insufficient fund");
         }
         else {
-          screen.displayMessageLine("Insufficient fund");
+          screen.displayMessageLine("Insufficient fund, try other amounts");
         }
       }
       else {
         screen.displayMessageLine("\nCancelling transaction");
       }
-      while(!cashDispensed);
-    }
+    }  while(!cashDispensed);
 
-  
-  
+  }
+
+
   private int displayMenuOfAmounts() {
     int userchoice = 0;
-    Screen screen getScreen();
+    Screen screen = getScreen();
 
     int [] amounts = { 0, 50, 100, 150, 200, 250};
 
@@ -65,7 +67,7 @@ public class Withdraw extends Transaction {
       screen.displayMessageLine("6 - Cancel transaction");
       screen.displayMessage("\nOthers");
 
-      int input keypad.getInput();
+      int input = keypad.getInput();
 
       switch( input ) {
         case 1:
@@ -79,10 +81,9 @@ public class Withdraw extends Transaction {
           userChoice = CANCELED;
           break;
         default:
-          screen.displayMessageLine("\nInvalid selection, Try again")
+          screen.displayMessageLine("\nInvalid selection, Try again");
       }
     }
     return userChoice;
-  }
   }
 }

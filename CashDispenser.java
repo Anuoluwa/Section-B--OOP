@@ -1,3 +1,5 @@
+package com.cogrammar.atm;
+
 public class CashDispenser {
   private final static int INITIAL_COUNT = 1000000; // number of notes in the cash dispenser
   private int count; // remaining number of $50 notes

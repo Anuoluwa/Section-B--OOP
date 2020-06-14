@@ -1,3 +1,5 @@
+package com.cogrammar.atm;
+
 import java.util.Scanner;
 
 public class Keypad {

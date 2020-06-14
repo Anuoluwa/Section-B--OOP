@@ -1,3 +1,8 @@
+package com.cogrammar.atm;
+
+import com.cogrammar.transaction.*;
+import com.cogrammar.account.*;
+
 public class ATM {
   private boolean userAuthenticated;
   private int currentAccountId;
@@ -79,4 +84,20 @@ public class ATM {
     screen.displayMessageLine("4 - Exit");
   }
 
+  private Transaction createTransaction( int type) {
+    Transaction temp = null;
+
+    switch(type) {
+      case CHECK_BALANCE:
+        temp = new CheckBalance(currentAccountId, screen, bankDatabase);
+        break;
+      case WITHDRAWAL:  
+        temp = new Withdrawal( currentAccountId, screen, bankDatabase, keypad, cashDispenser );
+        break;
+      case DEPOSIT:
+        temp = new Deposit(currentAmountId, screen, bankDatabase, keypad, depositSlot);
+        break;
+    }
+    return temp;
+  }
 }

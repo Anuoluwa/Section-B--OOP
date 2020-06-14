@@ -1,3 +1,5 @@
+package com.cogrammar.transaction;
+
 // This will be called only by the subclasses
 public abstract class Transaction {
   private int accountId;

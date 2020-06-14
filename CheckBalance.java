@@ -1,3 +1,5 @@
+package com.cogrammar.transaction;
+
 public class CheckBalance extends Transaction {
   public CheckBalance( int userAccountId, Screen atmScreen, BankDatabase atmBankDatabase) {
     super(userAccountId, atmScreen, atmBankDatabase);

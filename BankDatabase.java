@@ -1,3 +1,5 @@
+package com.cogrammar.account;
+
 public class BankDatabase {
   private Account[] accounts;
 
