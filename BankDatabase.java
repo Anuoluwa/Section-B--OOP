@@ -2,7 +2,7 @@ public class BankDatabase {
   private Account[] accounts;
 
   // no argument
-  public BankDatabase(){
+  public BankDatabase() {
     accounts = new Account[ 10 ];
     accounts[ 0 ] = new SavingsAccount(0100, 100.0, 20.0);
     accounts[ 1 ] = new SavingsAccount(0101, 200.0, 20.0);
